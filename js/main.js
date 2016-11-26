@@ -3,7 +3,7 @@ var defpos = [ 35.862160, 136.367295, "ツリーピクニックアドベンチ�
 //var defpos = [ 35.943406, 136.188597, "鯖江駅" ];
 var viewlen = 20;
 var maxlen = 30;
-var dllpoi = 0.1;
+var dllpoi = 10.0;
 var dllemr = 0.01;
 
 var gpson = true;
