@@ -127,7 +127,7 @@ var getHTMLMap = function(lat, lng, lat2, lng2) {
 };
 
 var getDataSrc = function(type) {
-	if (type == "http://purl.org/jrrk#CivicPOI")
+	if (type == "http://purl.org/jrrk#CivicPOI" || type == “http://ckan.odp.jig.jp/organization/jp-fukui-imadate-ikeda”)
 		return "観光オープンデータ";
 	if (type == "http://odp.jig.jp/odp/1.0#TourSpot")
 		return "公共クラウド観光データ";
@@ -141,7 +141,8 @@ var getNearWithGeo = function(lat, lng, size, callback) {
 	// http://odp.jig.jp/odp/1.0#TourSpot
 	// http://purl.org/jrrk#EmergencyFacility
 	var typepoi = [
-		"http://purl.org/jrrk#CivicPOI",
+//		"http://purl.org/jrrk#CivicPOI",
+               “http://ckan.odp.jig.jp/organization/jp-fukui-imadate-ikeda”,
 		"http://odp.jig.jp/odp/1.0#TourSpot"
 	];
 	var typeemergency = [
