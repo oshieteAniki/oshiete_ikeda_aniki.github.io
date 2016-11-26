@@ -178,7 +178,9 @@ var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
 				callback(d);
 				return;
 			}
+				*/
 //			alert("/2 " + d.length + "<" + size);
+				/*
 			getNearTypesWithGeo(types, lat, lng, dll, size * 2, function(d) {
 				if (d.length > 0) {
 					callback(d);
