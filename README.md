@@ -4,4 +4,3 @@ https://howml.github.io/akijikan/
 
 ##スペシャルサンクス
 地元民オススメ池田寄り道スポットは、[AKIJIKAN](https://howml.github.io/akijikan/  )をベースに制作しました
-CfSの川人さん(aka [ダッピスタジオ](http://www.dappi.jp))さんに多大なる感謝を
