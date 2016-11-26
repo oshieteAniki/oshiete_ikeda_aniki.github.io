@@ -183,6 +183,7 @@ var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
 					callback(d);
 					return;
 				}
+				/*
 				getNearTypesWithGeo(types, lat, lng, dll * 10, size, function(d) {
 					if (d.length > 0) {
 						callback(d);
@@ -190,6 +191,7 @@ var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
 					}
 					getNearTypesWithGeo(types, lat, lng, dll * 100, size, callback);
 				});
+				*/
 			});
 		});
 	});
