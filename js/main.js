@@ -172,13 +172,11 @@ var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
 			return;
 		}
 //		alert("/10 " + d.length + "<" + size);
-				/*
-		getNearTypesWithGeo(types, lat, lng, dll / 3, size * 2, function(d) {
+		getNearTypesWithGeo(types, lat, lng, dll / 2, size * 2, function(d) {
 			if (d.length >= size / 2) {
 				callback(d);
 				return;
 			}
-				*/
 //			alert("/2 " + d.length + "<" + size);
 				/*
 			getNearTypesWithGeo(types, lat, lng, dll, size * 2, function(d) {
@@ -194,8 +192,8 @@ var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
 					getNearTypesWithGeo(types, lat, lng, dll * 100, size, callback);
 				});
 			});
-		});
 				*/
+		});
 	});
 };
 var getNearTypesWithGeo = function(types, lat, lng, dll, size, callback, order) {
