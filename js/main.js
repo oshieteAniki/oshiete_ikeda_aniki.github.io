@@ -355,6 +355,7 @@ var showItems = function(lat, lng) {
 		}
 		var emergencymode = false;
 		var emelink = null;
+		/*
 		get("flip").onclick = function() {
 			emergencymode = !emergencymode;
 			var cs = get("items").children;
@@ -394,6 +395,7 @@ var showItems = function(lat, lng) {
 				emelink.disabled = true;
 			}
 		};
+		*/
 	});
 };
 var getImageLink = function(img) {
@@ -422,6 +424,12 @@ var addItemSpot = function(d, lat, lng) {
 
 //localStorage.setItem("akijikan-init", "0");
 $(function() {
+	var naniki = 2;
+	setInterval(function() {
+		get("aniki").src = "img/icon_aniki" + naniki + ".png";
+		naniki = naniki == 2 ? 1 : 2;
+	}, 500);
+
 	if ("1" != localStorage.getItem("akijikan-init")) {
 		get("splash").style.display = "block";
 		get("splash").onclick = function() {
