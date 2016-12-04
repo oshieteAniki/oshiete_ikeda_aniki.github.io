@@ -338,7 +338,7 @@ var showItems = function(lat, lng) {
 			];
 			for(var j=0;j<comments.length;j++){
 				if(d.name==comments[j][0]){
-					d.desc+="<br><b><font color=\"#FFFF00\">アニキのオススメポイント「"+comments[j][1]+"」</font></b>";
+					d.desc+="<br><b><font color=#FFFF00>アニキのオススメポイント「"+comments[j][1]+"」</font></b>";
 				}
 			}
 			var item = addItemSpot(d, lat, lng);
