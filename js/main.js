@@ -2,7 +2,7 @@ var defpos = [ 35.862160, 136.367295, "ツリーピクニックアドベンチ�
 //var defpos = [ 42.108813, 140.573886, "森町駅" ];
 //var defpos = [ 35.943406, 136.188597, "鯖江駅" ];
 var viewlen = 100;
-var maxlen = 30;
+var maxlen = 100;
 var dllpoi = 15.0;
 var dllemr = 0.01;
 
@@ -199,7 +199,7 @@ var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
 var getNearTypesWithGeo = function(types, lat, lng, dll, size, callback, order) {
 	lat = parseFloat(lat);
 	lng = parseFloat(lng);
-	dll = 0.05;
+	dll = 0.10;
 	var latmin = lat - dll;
 	var latmax = lat + dll;
 	var lngmin = lng - dll;
