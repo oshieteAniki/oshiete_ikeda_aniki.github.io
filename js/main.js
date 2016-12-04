@@ -240,7 +240,7 @@ var getNearTypesWithGeo = function(types, lat, lng, dll, size, callback, order) 
 	
 	order = "";
 	q = q.replace(/\$ORDER\$/g, order);
-	q = q.replace(/\$SIZE\$/g, 50);
+	q = q.replace(/\$SIZE\$/g, 100);
 //	q = q.replace(/\$TYPE\$/g, type);
 	q = q.replace(/\$LANG\$/g, "ja");
 	q = q.replace(/\$LAT_MAX\$/g, latmax);
