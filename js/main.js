@@ -257,6 +257,7 @@ var getNearTypesWithGeo = function(types, lat, lng, dll, size, callback, order) 
 	q = q.replace(/\$FILTER\$/g, filter);
 	
 //	prompt(q);
+	console.log(q);
 	
 	if (localdebug) {
 		callback(dummy);
