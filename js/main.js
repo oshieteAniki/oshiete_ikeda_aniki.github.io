@@ -1,7 +1,7 @@
 var defpos = [ 35.862160, 136.367295, "ツリーピクニックアドベンチャーいけだ" ];
 //var defpos = [ 42.108813, 140.573886, "森町駅" ];
 //var defpos = [ 35.943406, 136.188597, "鯖江駅" ];
-var viewlen = 20;
+var viewlen = 100;
 var maxlen = 30;
 var dllpoi = 15.0;
 var dllemr = 0.01;
