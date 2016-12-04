@@ -199,6 +199,7 @@ var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
 var getNearTypesWithGeo = function(types, lat, lng, dll, size, callback, order) {
 	lat = parseFloat(lat);
 	lng = parseFloat(lng);
+	dll = 0.05;
 	var latmin = lat - dll;
 	var latmax = lat + dll;
 	var lngmin = lng - dll;
@@ -227,7 +228,7 @@ var getNearTypesWithGeo = function(types, lat, lng, dll, size, callback, order) 
 			optional { ?s <http://schema.org/url> ?link }
 			$FILTER$
 			filter(lang(?name)="$LANG$")
-			filter(xsd:float(?lat) < $LAT_MAX$ && xsd:float(?lat) > $LAT_MIN$ && xsd:float(?lng) < $LNG_MAX$ && xsd:float(?lng) > $LAT_MIN$)
+			filter(xsd:float(?lat) < $LAT_MAX$ && xsd:float(?lat) > $LAT_MIN$ && xsd:float(?lng) < $LNG_MAX$ && xsd:float(?lng) > $LNG_MIN$)
 		} $ORDER$ limit $SIZE$
 	*/});
 	/*
@@ -237,10 +238,7 @@ var getNearTypesWithGeo = function(types, lat, lng, dll, size, callback, order) 
 	filter(?type=<http://odp.jig.jp/odp/1.0#TourSpot> || ?type=<http://purl.org/jrrk#CivicPOI> || ?type=<http://purl.org/jrrk#EmergencyFacility>)
 	*/
 	
-	if (!order)
-		order = "order by rand()";
-//	if (!order)
-//		order = "";
+	order = "";
 	q = q.replace(/\$ORDER\$/g, order);
 	q = q.replace(/\$SIZE\$/g, size);
 //	q = q.replace(/\$TYPE\$/g, type);
