@@ -1,61 +1,20 @@
 var defpos = [ 35.862160, 136.367295, "ツリーピクニックアドベンチャーいけだ" ];
-//var defpos = [ 42.108813, 140.573886, "森町駅" ];
-//var defpos = [ 35.943406, 136.188597, "鯖江駅" ];
-var viewlen = 100;
+var viewlen = 20;
 var maxlen = 30;
-var dllpoi = 15.0;
-var dllemr = 0.01;
+var dllpoi = 0.1;
 
 var gpson = true;
-//var gpson = false;
-
-var localdebug = true;
-var localdebug = false;
-
-var dummy = [
-	{
-		name: "むろらん雪まつり",
-		img: "http://www.kujiran.net/danpara/danparapark10.gif",
-		lat: 42.4116113,
-		lng: 140.9988941,
-		desc: "だんパラスキー場を会場に、市民スキー大会、スノーボード、スキー教室の他、ご家族そろって楽しめる多彩な催しが満載です。"
-	},
-	{
-		name: "白鳥大橋ビューポイント",
-		img: "http://www.city.muroran.lg.jp/main/org6400/images/yakei-hakutyouwan.jpg",
-		lat: 42.362751,
-		lng: 141.000106,
-		desc: "白鳥大橋のビューポイント。橋を西に望む住宅街にある小さな展望広場。夕日が美しく、大黒島が橋の桁下中央に入る景観美。"
-	},
-	{
-		name: "中島公園",
-		lat: 42.353396,
-		lng: 141.024955,
-		img: null,
-		desc: "駅近くの公園です",
-	},
-	{
-		name: "新日鉄の工場です、すごい夜景がきれいですよ！",
-		lat: 42.344137,
-		lng: 141.005935,
-		img: null,
-		desc: "製鉄工場です",
-	},
-];
 
 var addItem = function(s, img, list, distance, icon) {
-	/*
-	<li id="day0"><div class="collapsible-header"><span class="days"></span><span class="gcal"></span></div></li>
-	*/
 	var li = create("li");
 	var div = create("div");
 	div.className = "collapsible-header";
 	li.appendChild(div);
-	
+
 	if (img && img != "noimage" && img.indexOf("https://") == -1) {
 		img = null;
 	}
-	
+
 	if (img) {
 		if (img != "noimage") {
 			var span2 = create("span");
@@ -69,7 +28,6 @@ var addItem = function(s, img, list, distance, icon) {
 		span2.className = "icon";
 		div.appendChild(span2);
 		span2.style.backgroundImage = "url(" + img + ")";
-//		span2.style.backgroundSize = "100%";
 	} else {
 		var span2 = create("span");
 		span2.className = "icon";
@@ -77,21 +35,20 @@ var addItem = function(s, img, list, distance, icon) {
 		span2.className = "materialicon";
 		if (!icon)
 			icon = "broken_image";// warning
-		//		span2.innerHTML = "<i class=material-icons>broken_image</i>";
 		span2.innerHTML = "<i class=material-icons>" + icon + "</i>";
 	}
 	var span = create("span");
 	span.className = "days";
 	div.appendChild(span);
 	span.textContent = s;
-	
+
 	if (distance) {
 		var span3 = create("span");
 		span3.className = "distance";
 		span.appendChild(span3);
 		span3.textContent = fixfloat(distance, 2) + "km";
 	}
-	
+
 	if (list) {
 		var div2 = create("div");
 		div2.className = "collapsible-body";
@@ -139,30 +96,15 @@ var getNearWithGeo = function(lat, lng, size, callback) {
 	// type
 	// http://purl.org/jrrk#CivicPOI
 	// http://odp.jig.jp/odp/1.0#TourSpot
-	// http://purl.org/jrrk#EmergencyFacility
 	var typepoi = [
 		"http://purl.org/jrrk#CivicPOI",
 		"http://odp.jig.jp/odp/1.0#TourSpot"
 	];
-	var typeemergency = [
-		"http://purl.org/jrrk#EmergencyFacility"
-	];
-	/*
-	getNearTypesWithGeoMulti(typeemergency, lat, lng, dllemr, 10, function(emrs) {
-	});
-	return;
-	*/
 	getNearTypesWithGeoMulti(typepoi, lat, lng, dllpoi, size, function(pois) {
-		getNearTypesWithGeoMulti(typeemergency, lat, lng, dllemr, 10, function(emrs) {
-			
-//			dump(emrs);
-			var data = [];
-			for (var i = 0; i < pois.length; i++)
-				data.push(pois[i]);
-			for (var i = 0; i < emrs.length; i++)
-				data.push(emrs[i]);
-			callback(data);
-		});
+		var data = [];
+		for (var i = 0; i < pois.length; i++)
+			data.push(pois[i]);
+		callback(data);
 	});
 };
 var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
@@ -171,35 +113,17 @@ var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
 			callback(d);
 			return;
 		}
-//		alert("/10 " + d.length + "<" + size);
 		getNearTypesWithGeo(types, lat, lng, dll / 2, size * 2, function(d) {
 			if (d.length >= size / 2) {
 				callback(d);
 				return;
 			}
-//			alert("/2 " + d.length + "<" + size);
-				/*
-			getNearTypesWithGeo(types, lat, lng, dll, size * 2, function(d) {
-				if (d.length > 0) {
-					callback(d);
-					return;
-				}
-				getNearTypesWithGeo(types, lat, lng, dll * 10, size, function(d) {
-					if (d.length > 0) {
-						callback(d);
-						return;
-					}
-					getNearTypesWithGeo(types, lat, lng, dll * 100, size, callback);
-				});
-			});
-				*/
 		});
 	});
 };
 var getNearTypesWithGeo = function(types, lat, lng, dll, size, callback, order) {
 	lat = parseFloat(lat);
 	lng = parseFloat(lng);
-	dll = 0.05;
 	var latmin = lat - dll;
 	var latmax = lat + dll;
 	var lngmin = lng - dll;
@@ -234,38 +158,31 @@ var getNearTypesWithGeo = function(types, lat, lng, dll, size, callback, order) 
 	/*
 	filter(?type=<http://odp.jig.jp/odp/1.0#TourSpot>)
 	filter(?type=<http://odp.jig.jp/odp/1.0#TourSpot> || ?type=<http://purl.org/jrrk#CivicPOI>)
-	
+
 	filter(?type=<http://odp.jig.jp/odp/1.0#TourSpot> || ?type=<http://purl.org/jrrk#CivicPOI> || ?type=<http://purl.org/jrrk#EmergencyFacility>)
 	*/
-	
+
 	order = "";
+
 	q = q.replace(/\$ORDER\$/g, order);
-	q = q.replace(/\$SIZE\$/g, 100);
+	q = q.replace(/\$SIZE\$/g, size);
 //	q = q.replace(/\$TYPE\$/g, type);
 	q = q.replace(/\$LANG\$/g, "ja");
 	q = q.replace(/\$LAT_MAX\$/g, latmax);
 	q = q.replace(/\$LAT_MIN\$/g, latmin);
 	q = q.replace(/\$LNG_MAX\$/g, lngmax);
 	q = q.replace(/\$LNG_MIN\$/g, lngmin);
-		
+
 	var ts = [];
 	for (var i = 0; i < types.length; i++)
 		ts[i] = "?type=<" + types[i] + ">";
 	var filter = "filter(" + ts.join(" || ") + ")\n";
 	q = q.replace(/\$FILTER\$/g, filter);
-	
-//	prompt(q);
-	console.log(q);
-	
-	if (localdebug) {
-		callback(dummy);
-	} else {
-//		prompt(q);
-		var baseurl = "https://sparql.odp.jig.jp/data/sparql";
-		querySPARQL(baseurl, q, function(data) {
-			callback(toList(data));
-		});
-	}
+
+	var baseurl = "https://sparql.odp.jig.jp/data/sparql";
+	querySPARQL(baseurl, q, function(data) {
+		callback(toList(data));
+	});
 };
 var toList = function(data) {
 	var items = data.results.bindings;
@@ -317,7 +234,7 @@ var showItems = function(lat, lng) {
 		for (var n in names) {
 			data.push(names[n]);
 		}
-		
+
 		for (var i = 0; i < data.length; i++) {
 			var d = data[i];
 			d.distance = getDistance(lat, lng, d.lat, d.lng);
@@ -333,12 +250,12 @@ var showItems = function(lat, lng) {
 				["冠山","登山におススメ！！！「北陸のマッターホルン」とも呼ばれ、標高が高く、木が低いぜ～"],
 				["自然遊歩道","とにかくコケが深くて立派！！！小動物が珍しい食べ方をしたクルミが落ちてるかも、探してみてね♪"],
 				["酔虎 夢","獣肉を食べれる。シカにクマにイノシシ！和風ジビエをたっぷり堪能できるよ～"],
-				["こってコテいけだ","お土産にはおこもじ（漬物）がもってこい！！季節によって味も違って、「生きている漬けもの」って言われているよ～"],
+				["まちの駅　こってコテいけだ","お土産にはおこもじ（漬物）がもってこい！！季節によって味も違って、「生きている漬けもの」って言われているよ～"],
 				["農村de合宿キャンプセンター","テスト"]
 			];
 			for(var j=0;j<comments.length;j++){
 				if(d.name==comments[j][0]){
-					d.desc+="<br><b><font color=#FFFF00>アニキのオススメポイント「"+comments[j][1]+"」</font></b>";
+					d.desc+="<br><b>アニキのオススメポイント「"+comments[j][1]+"」</b>";
 				}
 			}
 			var item = addItemSpot(d, lat, lng);
@@ -354,47 +271,6 @@ var showItems = function(lat, lng) {
 		}
 		var emergencymode = false;
 		var emelink = null;
-		/*
-		get("flip").onclick = function() {
-			emergencymode = !emergencymode;
-			var cs = get("items").children;
-			var n = 0;
-			for (var i = 0; i < cs.length; i++) {
-				var item = cs[i];
-				var d = item.data;
-				if (d) {
-					var b = d.type == "http://purl.org/jrrk#EmergencyFacility";
-					if (b == emergencymode && n < viewlen) {
-						n++;
-						item.style.display =  "block";
-					} else {
-						item.style.display =  "none";
-					}
-				}
-			}
-			if (n == 0) {
-				if (emergencymode) {
-					alert("近くに避難所オープンデータがないようです");
-				} else {
-					alert("近くに観光オープンデータがないようです");
-				}
-			}
-			if (emergencymode) {
-				if (!emelink) {
-					var link = document.createElement("link");
-					link.rel = "stylesheet";
-					link.type = "text/css";
-					link.href = "css/emcustom.css";
-					document.getElementsByTagName("head")[0].appendChild(link);
-					emelink = link;
-				} else {
-					emelink.disabled = false;
-				}
-			} else {
-				emelink.disabled = true;
-			}
-		};
-		*/
 	});
 };
 var getImageLink = function(img) {
@@ -436,7 +312,7 @@ $(function() {
 			localStorage.setItem("akijikan-init", "1");
 		};
 	}
-	
+
 	var hash = document.location.hash;
 	if (hash.length > 1) {
 		var pos = hash.substring(1).split(",");
@@ -449,14 +325,14 @@ $(function() {
 		ignoreGPS();
 		return;
 	}
-	
+
 	get("logo-container").onclick = loadItem;
 	loadItem();
 });
 var loadItem = function() {
 	clear("items");
 	addItem("付近のデータ取得中...", "noimage");
-	
+
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(
 			function(pos) {
