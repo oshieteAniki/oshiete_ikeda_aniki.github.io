@@ -113,11 +113,14 @@ var getNearTypesWithGeoMulti = function(types, lat, lng, dll, size, callback) {
 			callback(d);
 			return;
 		}
-		getNearTypesWithGeo(types, lat, lng, dll / 2, size * 2, function(d) {
-			if (d.length >= size / 2) {
+		getNearTypesWithGeo(types, lat, lng, dll / 2, size * 2, function(d2) {
+			for (var i = 0; i < d2.length; i++)
+				d.push(d2[i]);
+			if (d.length > 0) {
 				callback(d);
 				return;
 			}
+			getNearTypesWithGeo(types, lat, lng, dll * 100, size, callback);
 		});
 	});
 };
