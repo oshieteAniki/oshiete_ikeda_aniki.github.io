@@ -5,7 +5,7 @@ var dllpoi = 0.1;
 
 var gpson = true;
 
-var addItem = function(s, img, list, distance, icon) {
+var addItem = function(s, img, list, distance, icon, type) {
 	var li = create("li");
 	var div = create("div");
 	div.className = "collapsible-header";
@@ -46,7 +46,7 @@ var addItem = function(s, img, list, distance, icon) {
 		var span3 = create("span");
 		span3.className = "distance";
 		span.appendChild(span3);
-		span3.innerHTML = list[2].substring(0, 10) + "...<br>" + fixfloat(distance, 2) + "km";
+		span3.innerHTML += fixfloat(distance, 2) + "km";
 	}
 
 	if (list) {
@@ -58,7 +58,16 @@ var addItem = function(s, img, list, distance, icon) {
 				var d = create("div");
 				d.innerHTML = list[i];
 				div2.appendChild(d);
+				if (i == 2) {
+					span3.innerHTML = list[2].substring(0, 10) + "...<br>" + span3.innerHTML; 
+				}
 			}
+		}
+	}
+	if (type) {
+		if (type == "http://purl.org/jrrk#PublicToilet") {
+			span3.innerHTML = "公衆トイレ<br>" + span3.innerHTML; 
+			div.style.color = "rgb(43,189,215)";
 		}
 	}
 	get("items").appendChild(li);
@@ -90,6 +99,9 @@ var getDataSrc = function(type) {
 		return "公共クラウド観光データ";
 	if (type == "http://purl.org/jrrk#EmergencyFacility")
 		return "避難所";
+	if (type == "http://purl.org/jrrk#PublicToilet") {
+		return "公衆トイレ";
+	}
 	return type;
 };
 var getNearWithGeo = function(lat, lng, size, callback) {
@@ -98,7 +110,8 @@ var getNearWithGeo = function(lat, lng, size, callback) {
 	// http://odp.jig.jp/odp/1.0#TourSpot
 	var typepoi = [
 		"http://purl.org/jrrk#CivicPOI",
-		"http://odp.jig.jp/odp/1.0#TourSpot"
+		"http://odp.jig.jp/odp/1.0#TourSpot",
+		"http://purl.org/jrrk#PublicToilet"
 	];
 	getNearTypesWithGeoMulti(typepoi, lat, lng, dllpoi, size, function(pois) {
 		var data = [];
@@ -297,7 +310,7 @@ var addItemSpot = function(d, lat, lng) {
 		d.descen,
 		getHTMLMap(lat, lng, d.lat, d.lng),
 		getLink(getDataSrc(d.type), d.s),
-	], d.distance, icon);
+	], d.distance, icon, d.type);
 };
 
 //localStorage.setItem("akijikan-init", "0");
