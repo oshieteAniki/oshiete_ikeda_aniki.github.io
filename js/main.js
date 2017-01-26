@@ -46,7 +46,7 @@ var addItem = function(s, img, list, distance, icon) {
 		var span3 = create("span");
 		span3.className = "distance";
 		span.appendChild(span3);
-		span3.textContent = fixfloat(distance, 2) + "km";
+		span3.innerHTML = list[2].substring(0, 10) + "...<br>" + fixfloat(distance, 2) + "km";
 	}
 
 	if (list) {
