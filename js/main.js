@@ -5,6 +5,8 @@ var dllpoi = 0.1;
 
 var gpson = true;
 
+var anikiMode = false;
+
 var addItem = function(s, img, list, distance, icon, type) {
 	var li = create("li");
 	var div = create("div");
@@ -266,13 +268,17 @@ var showItems = function(lat, lng) {
 				["冠山","登山におススメ！！！「北陸のマッターホルン」とも呼ばれ、標高が高く、木が低いぜ～"],
 				["自然遊歩道","とにかくコケが深くて立派！！！小動物が珍しい食べ方をしたクルミが落ちてるかも、探してみてね♪"],
 				["酔虎 夢","獣肉を食べれる。シカにクマにイノシシ！和風ジビエをたっぷり堪能できるよ～"],
-				["まちの駅　こってコテいけだ","お土産にはおこもじ（漬物）がもってこい！！季節によって味も違って、「生きている漬けもの」って言われているよ～"],
-				["農村de合宿キャンプセンター","テスト"]
+				["こってコテいけだ","お土産にはおこもじ（漬物）がもってこい！！季節によって味も違って、「生きている漬けもの」って言われているよ～"]
 			];
+			var anikiSpot = false;
 			for(var j=0;j<comments.length;j++){
 				if(d.name==comments[j][0]){
 					d.desc+="<br><b><font color=\"#FFFF00\">アニキのオススメポイント「"+comments[j][1]+"」</font></b>";
+					anikiSpot = true;
 				}
+			}
+			if (anikiMode && !anikiSpot) {
+				continue;
 			}
 			var item = addItemSpot(d, lat, lng);
 			item.data = d;
@@ -332,6 +338,11 @@ $(function() {
 	var hash = document.location.hash;
 	if (hash.length > 1) {
 		var pos = hash.substring(1).split(",");
+		if (pos.length == 3 && pos[2] == "aniki") {
+			anikiMode = true;
+			dllpoi = 1;
+			maxlen = 100;
+		}
 		if (pos && pos.length == 2) {
 			showItems(pos[0], pos[1]);
 			return;
