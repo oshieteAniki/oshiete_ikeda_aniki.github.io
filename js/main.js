@@ -1,6 +1,6 @@
 var defpos = [ 35.862160, 136.367295, "ツリーピクニックアドベンチャーいけだ" ];
-var viewlen = 20;
-var maxlen = 30;
+var viewlen = 50;
+var maxlen = 50;
 var dllpoi = 0.1;
 
 var gpson = true;
