@@ -274,7 +274,7 @@ var showItems = function(lat, lng) {
 			var anikiSpot = false;
 			for(var j=0;j<comments.length;j++){
 				if(d.name==comments[j][0]){
-					d.desc+="<br><br><b><font color=\"#FFFF00\">アニキのオススメポイント<br>「"+comments[j][1]+"」</font></b>";
+					d.desc+="<br><br><b><font color=\"#FFFF00\"><span style=\"border:1px solid\">アニキのオススメポイント</span><br>「"+comments[j][1]+"」</font></b>";
 					anikiSpot = true;
 				}
 			}
