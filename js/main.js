@@ -286,7 +286,7 @@ var showItems = function(lat, lng) {
 				["稲荷の大杉","oosugi.jpg"],
 				["堀口家","horiguchi.jpg"],
 				["歩々","hoho.jpg"],
-				["こってコテいけだ","kotekote.jpg"],
+				["こってコテいけだ","komunita.jpg"],
 				["木工体験","mokkou.jpg"],
 				["WoodLabe-Ikeda","woodlabo.jpg"],
 				["ふるさと道場","soba.jpg"],
@@ -294,8 +294,11 @@ var showItems = function(lat, lng) {
 				["池田町能面美術館","noumen.jpg"],
 				["田楽能舞","noumen.jpg"],
 				["水車","soba.jpg"],
-				["しらほ食堂","kotekote.jpg"],
-				["おもちの母屋","kotekote.jpg"]
+				["しらほ食堂","komunita.jpg"],
+				["おもちの母屋","komunita.jpg"],
+				["喫茶　香","komunita.jpg"],
+				["足羽川","kawa.jpg"],
+				["ツリーピクニックアドベンチャーいけだ","tpa.jpg"]
 			];
 			var anikiSpot = false;
 			for(var j=0;j<comments.length;j++){
