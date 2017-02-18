@@ -7,7 +7,7 @@ var gpson = true;
 
 var anikiMode = false;
 
-var addItem = function(s, img, list, distance, icon, type) {
+var addItem = function(s, img, list, distance, icon, type, ikedaicon) {
 	var li = create("li");
 	var div = create("div");
 	div.className = "collapsible-header";
@@ -17,7 +17,14 @@ var addItem = function(s, img, list, distance, icon, type) {
 		img = null;
 	}
 
-	if (img) {
+	if(ikedaicon){
+		var span2 = create("span");
+		span2.className = "icon";
+		div.appendChild(span2);
+		span2.style.backgroundImage = "url(img/ikedaicons/" + ikedaicon + ")";
+		span2.style.backgroundRepeat = "no-repeat";
+		span2.style.backgroundSize = "contain";
+	}else if (img) {
 		if (img != "noimage") {
 			var span2 = create("span");
 			span2.className = "icon";
@@ -271,11 +278,28 @@ var showItems = function(lat, lng) {
 				["こってコテいけだ","お土産にはおこもじ（漬物）がもってこい！！季節によって味も違って、「生きている漬けもの」って言われているよ～"],
 				["おもちの母屋","特に季節ごとの天ぷらはおすすめ、春は山菜、冬は、はまな味噌が絶品。おしゃれな店内には暖炉もあり落ち着く空間。町外からお客様が来たらランチはここって決めてる。"]
 			];
+			var icons=[
+				["かずら橋","kazura.jpg"],
+				["白山神社のお面さんまつり","hakusan.jpg"],
+				["能面美術館","noumen.jpg"],
+				["ファームハウス・コムニタ","komunita.jpg"],
+				["稲荷の大杉","oosugi.jpg"],
+				["堀口家","horiguchi.jpg"],
+				["歩々","hoho.jpg"],
+				["こってコテいけだ","kotekote.jpg"],
+				["木工体験","mokkou.jpg"],
+				["WoodLabe-Ikeda","woodlabo.jpg"],
+			];
 			var anikiSpot = false;
 			for(var j=0;j<comments.length;j++){
 				if(d.name==comments[j][0]){
 					d.desc+="<br><br><b><font color=\"#FFFF00\"><span style=\"border:1px solid\">アニキのオススメポイント</span><br>「"+comments[j][1]+"」</font></b>";
 					anikiSpot = true;
+				}
+			}
+			for(var j=0;j<icons.length;j++){
+				if(d.name==icons[j][0]){
+					d.ikedaicon=icons[j][1];
 				}
 			}
 			if (anikiMode && !anikiSpot) {
@@ -317,7 +341,7 @@ var addItemSpot = function(d, lat, lng) {
 		d.descen,
 		getHTMLMap(lat, lng, d.lat, d.lng),
 		getLink(getDataSrc(d.type), d.s),
-	], d.distance, icon, d.type);
+	], d.distance, icon, d.type, d.ikedaicon);
 };
 
 //localStorage.setItem("akijikan-init", "0");
