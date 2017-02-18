@@ -280,7 +280,7 @@ var showItems = function(lat, lng) {
 			];
 			var icons=[
 				["かずら橋","kazura.jpg"],
-				["白山神社のお面さんまつり","hakusan.jpg"],
+				["白山神社のお面さんまつり","noumen.jpg"],
 				["能面美術館","noumen.jpg"],
 				["ファームハウス・コムニタ","komunita.jpg"],
 				["稲荷の大杉","oosugi.jpg"],
@@ -289,6 +289,13 @@ var showItems = function(lat, lng) {
 				["こってコテいけだ","kotekote.jpg"],
 				["木工体験","mokkou.jpg"],
 				["WoodLabe-Ikeda","woodlabo.jpg"],
+				["ふるさと道場","soba.jpg"],
+				["渓流温泉冠荘","onsen.jpg"],
+				["池田町能面美術館","noumen.jpg"],
+				["田楽能舞","noumen.jpg"],
+				["水車","soba.jpg"],
+				["しらほ食堂","kotekote.jpg"],
+				["おもちの母屋","kotekote.jpg"]
 			];
 			var anikiSpot = false;
 			for(var j=0;j<comments.length;j++){
