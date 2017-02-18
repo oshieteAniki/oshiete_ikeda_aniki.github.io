@@ -7,15 +7,26 @@ var gpson = true;
 
 var anikiMode = false;
 
+var proxyImageSSL = function(img) {
+	if (img && img != "noimage" && img.indexOf("https://") == -1) { // 非ssl画像チェック
+//		alert(img);
+		img = "https://api.odp.jig.jp/image/cache_ssl?url=" + encodeURIComponent(img);
+//		alert(img);
+//		http://www.city.muroran.lg.jp/main/org1400/images/s-matsuri_251.jpg
+	/*
+		https://api.odp.jig.jp/image/cache_ssl?url=http://www.city.muroran.lg.jp/main/org1400/images/s-matsuri_241.jpg
+	*/
+	}
+	return img;
+};
+
 var addItem = function(s, img, list, distance, icon, type, ikedaicon) {
 	var li = create("li");
 	var div = create("div");
 	div.className = "collapsible-header";
 	li.appendChild(div);
 
-	if (img && img != "noimage" && img.indexOf("https://") == -1) {
-		img = null;
-	}
+	img = proxyImageSSL(img);
 
 	if(ikedaicon){
 		var span2 = create("span");
@@ -300,6 +311,10 @@ var showItems = function(lat, lng) {
 				["足羽川","kawa.jpg"],
 				["ツリーピクニックアドベンチャーいけだ","tpa.jpg"],
 				["昭扇閣　べにや","syukuhaku.jpg"],
+				["鵜甘神社","torii.jpg"],
+				["須波阿須疑神社","torii.jpg"],
+				["須波阿須疑神社","torii.jpg"],
+				["おもちゃハウス　こどもと木","ki.jpg"]
 			];
 			var anikiSpot = false;
 			for(var j=0;j<comments.length;j++){
@@ -337,6 +352,7 @@ var showItems = function(lat, lng) {
 var getImageLink = function(img) {
 	if (!img)
 		return null;
+	img = proxyImageSSL(img);
 	return "<a href=" + img + " target=_blank><img width=100% src=" + img + "></a>";
 };
 var getLink = function(label, url) {
