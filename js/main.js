@@ -311,6 +311,9 @@ var showItems = function(lat, lng) {
 				if(d.name==icons[j][0]){
 					d.ikedaicon=icons[j][1];
 				}
+				if(d.type=="http://purl.org/jrrk#PublicToilet"){
+					d.ikedaicon="toile.jpg";
+				}
 			}
 			if (anikiMode && !anikiSpot) {
 				continue;
