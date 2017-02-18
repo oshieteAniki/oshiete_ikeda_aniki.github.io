@@ -282,7 +282,7 @@ var showItems = function(lat, lng) {
 				["かずら橋","kazura.jpg"],
 				["白山神社のお面さんまつり","noumen.jpg"],
 				["能面美術館","noumen.jpg"],
-				["ファームハウス・コムニタ","komunita.jpg"],
+				["ファームハウス・コムニタ","syukuhaku.jpg"],
 				["稲荷の大杉","oosugi.jpg"],
 				["堀口家","horiguchi.jpg"],
 				["歩々","hoho.jpg"],
@@ -298,7 +298,8 @@ var showItems = function(lat, lng) {
 				["おもちの母屋","komunita.jpg"],
 				["喫茶　香","komunita.jpg"],
 				["足羽川","kawa.jpg"],
-				["ツリーピクニックアドベンチャーいけだ","tpa.jpg"]
+				["ツリーピクニックアドベンチャーいけだ","tpa.jpg"],
+				["昭扇閣　べにや","syukuhaku.jpg"],
 			];
 			var anikiSpot = false;
 			for(var j=0;j<comments.length;j++){
