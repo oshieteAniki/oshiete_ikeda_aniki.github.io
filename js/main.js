@@ -7,6 +7,24 @@ var gpson = true;
 
 var anikiMode = false;
 
+var comments=[];
+
+function loadSheet(data) {
+	var e=data.feed.entry;
+	for(var i=0;i<e.length;i++){
+		var row=parseInt(e[i].gs$cell.row);
+		var col=parseInt(e[i].gs$cell.col);
+		var t=e[i].gs$cell.$t;
+		while(comments.length<row){
+			comments.push([]);
+		}
+		while(comments[row-1].length<col) {
+			comments[row-1].push('');
+		}
+		comments[row-1][col-1]=t;
+	}
+}
+
 var proxyImageSSL = function(img) {
 	if (img && img != "noimage" && img.indexOf("https://") == -1) { // 非ssl画像チェック
 //		alert(img);
@@ -281,14 +299,6 @@ var showItems = function(lat, lng) {
 		var n = 0;
 		for (var i = 0; i < data.length; i++) {
 			var d = data[i];
-			var comments=[
-				["ツリーピクニックアドベンチャーいけだ","空を飛ぶもよし、頭上を散策するもよし、遊ぶからこそ見えてくる池田の自然があるよ～色んな鳥が見られて、初夏にはアカショウビン、夏にはかっこうが鳴いてるよ！"],
-				["冠山","登山におススメ！！！「北陸のマッターホルン」とも呼ばれ、標高が高く、木が低いぜ～"],
-				["足羽川","とにかくコケが深くて立派！！！小動物が珍しい食べ方をしたクルミが落ちてるかも、探してみてね♪"],
-				["酔虎 夢","獣肉を食べれる。シカにクマにイノシシ！和風ジビエをたっぷり堪能できるよ～"],
-				["こってコテいけだ","お土産にはおこもじ（漬物）がもってこい！！季節によって味も違って、「生きている漬けもの」って言われているよ～"],
-				["おもちの母屋","特に季節ごとの天ぷらはおすすめ、春は山菜、冬は、はまな味噌が絶品。おしゃれな店内には暖炉もあり落ち着く空間。町外からお客様が来たらランチはここって決めてる。"]
-			];
 			var icons=[
 				["かずら橋","kazura.jpg"],
 				["白山神社のお面さんまつり","noumen.jpg"],
