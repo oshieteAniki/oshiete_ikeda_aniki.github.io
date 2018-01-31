@@ -194,7 +194,7 @@ var getLinkDirections = function(lat1, lng1, lat2, lng2) {
 	return "https://www.google.com/maps/dir/" + lat1 + "," + lng1 + "/" + lat2 + "," + lng2;
 };
 var getStaticMap = function(lat, lng, lat2, lng2) {
-	var APIKEY = "AIzaSyD9xmExdDMWOeBBS1BnBI7dEYblMAZtBMc";
+	var APIKEY = "AIzaSyDdH8sQCN7d4DqkHfVntsDOxiNVTgKuOos";
 	var s = "https://maps.googleapis.com/maps/api/staticmap?";
 	s += "key=" + APIKEY + "&";
 	s += "size=600x300&scale=2&maptype=roadmap&";
